@@ -1,0 +1,25 @@
+.profile__add-button {
+        background: url(./plus.svg);
+        width: 150px;
+        height: 50px;
+        background-repeat: no-repeat;
+        background-position: center;
+        border: 2px solid #fff;
+        border-radius: 2px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+.profile__add-button:hover {
+    opacity: 0.6;   
+}
+
+.profile__add-button:focus {
+    transition: 0s;
+    opacity: 0.3;
+    outline: none;
+}
+
+.profile__add-button:before {
+    opacity: 0.6;   
+}
