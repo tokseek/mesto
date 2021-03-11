@@ -1,0 +1,9 @@
+.elements__button-like {
+    background: url(../heart.svg);
+    width: 22px;
+    height: 19px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 0px;
+}
