@@ -7,7 +7,7 @@
         border: 2px solid #fff;
         border-radius: 2px;
         cursor: pointer;
-        transition: 0.3s;
+        transition: .3s;
     }
 
 .profile__add-button:hover {
@@ -16,10 +16,10 @@
 
 .profile__add-button:focus {
     transition: 0s;
-    opacity: 0.3;
+    opacity: .3;
     outline: none;
 }
 
 .profile__add-button:before {
-    opacity: 0.6;   
+    opacity: .6;   
 }

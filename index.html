@@ -36,7 +36,7 @@
 
         <!--  
 
-            E L E M E N T S
+        E L E M E N T S
 
         -->
         <setion class="elements">
@@ -94,14 +94,36 @@
 
         <!--  
 
-           F O O T E R
+        F O O T E R
             
         -->
-    <footer class="footer">
-        <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
-    </footer>    
 
+        <footer class="footer">
+            <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
+        </footer>
     </main>
+
+        <!--
+            
+         P O P U P
+            
+        -->
+
+        <div class="popup popup_opened">
+            <div class="popup__content">
+                <button class="popup__close"></button>
+                <form class="popup__form">
+                    <fieldset class="popup__fieldset">
+                        <h2 class="popup__title">Редактировать профиль</h2>
+                        <input class="popup__input popup__input-name" type="text">
+                        <input class="popup__input popup__input-status" type="text">
+                        <button class="popup__button" type="submit">Сохранить</button>
+                    </fieldset> 
+                </form>
+            </div>
+            <div class="popup__overlay"></div>
+        </div>
+
 </body>
 
 </body>

@@ -1,0 +1,21 @@
+.popup__close {
+    background: url(../__close/close.svg);
+    width: 40px;
+    height: 40px;
+    background-size: contain;
+    border: 0;
+    padding: 0px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.popup__close:hover {
+    opacity: .6;
+}
+
+.popup__close:focus {
+    outline: none;
+}
