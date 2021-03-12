@@ -11,7 +11,7 @@
     }
 
 .profile__add-button:hover {
-    opacity: 0.6;   
+    opacity: .6;   
 }
 
 .profile__add-button:focus {
@@ -20,6 +20,9 @@
     outline: none;
 }
 
-.profile__add-button:before {
-    opacity: .6;   
+@media screen and (max-width: 425px) {
+    .profile__add-button {
+        width: 100%;
+        background-size: 16px;
+    }
 }

@@ -1,5 +1,6 @@
 .page {
-    max-width: 1280px;
+    max-width: 880px;
+    padding: 0px 20px;
     margin: 0 auto;
     background: #000;
     color: #fff;
@@ -13,4 +14,10 @@
     -moz-text-size-adjust: 100%; /* Mozila */
 
     text-rendering: optimizeLegibility;
+}
+
+@media screen and (max-width: 320px) {
+    .page {
+        padding: 0px;
+    }
 }

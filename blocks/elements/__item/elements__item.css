@@ -1,4 +1,7 @@
 .elements__item {
     background-color: #fff;
     border-radius: 10px;
+    background-clip: content-box;
+    
+    -webkit-background-clip: content-box;
 }

@@ -1,4 +1,11 @@
 .content {
-    max-width: calc(100% - 200px*2);
+    max-width: 100%;
     margin: 40px auto 0px;
+}
+
+@media screen and (max-width: 320px) {
+    .content {
+        max-width: calc(100% - 19px*2);
+        margin: 42px auto 0px;
+    }
 }
