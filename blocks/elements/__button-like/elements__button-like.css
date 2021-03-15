@@ -1,5 +1,5 @@
 .elements__button-like {
-    background: url(../heart.svg);
+    background: url(./../../../images/heart.svg);
     width: 22px;
     height: 19px;
     background-size: contain;
@@ -16,11 +16,11 @@
 }
 
 .elements__button-like:focus {
-    background: url(../heart_active.svg);
+    background: url(../../../images/heart_active.svg);
     outline: none;
 }
 .elements__button-like:focus:hover {
-    background: url(../heart_active.svg);
+    background: url(../../../images/heart_active.svg);
     outline: none;
     opacity: 1;
 }
