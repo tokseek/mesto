@@ -18,3 +18,10 @@
 .popup__submit:focus {
     outline: none;
 }
+
+@media screen and (max-width: 425px) {
+    .popup__submit {
+        height: 46px;
+        margin: 15px 0px 0px;
+    }
+}
