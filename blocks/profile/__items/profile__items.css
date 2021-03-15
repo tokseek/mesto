@@ -1,5 +1,9 @@
 .profile__items {
     margin-left: 30px;
+    max-width: 90%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 @media screen and (max-width: 768px) {

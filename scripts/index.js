@@ -6,30 +6,35 @@ const profileName = document.querySelector('.profile__name');
 const profileStatus = document.querySelector('.profile__status');
 const inputName = document.querySelector('.popup__input-name');
 const inputStatus = document.querySelector('.popup__input-status');
+const formSubmit = document.querySelector('.popup__form');
 
-
-function OpenPopup() {
+function openPopup() {
     popup.classList.add('popup_opened');
     inputName.value = profileName.textContent;
     inputStatus.value = profileStatus.textContent;
 }
 
-function ClosePopup() {
+function closePopup() {
     popup.classList.remove('popup_opened');
 }
 
 openPopupBtn.addEventListener('click', function () {
-    OpenPopup();
+    openPopup();
 });
 
 closePopupBtn.addEventListener('click', function () {
-    ClosePopup();
+    closePopup();
 });
 closePopupOverlay.addEventListener('click', function () {
-    ClosePopup();
+    closePopup();
 });
 
-const saveBtn = document.querySelector('.popup__button');
 
+function changeValue(event) {
+    event.preventDefault();
+    profileName.textContent = inputName.value;
+    profileStatus.textContent = inputStatus.value;
+    closePopup()
+}
 
-
+formSubmit.addEventListener('submit', changeValue);
