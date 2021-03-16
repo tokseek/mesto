@@ -2,10 +2,10 @@
     background: url(../../../images/close.svg);
     width: 40px;
     height: 40px;
-    background-size: contain;
     border: 0;
     padding: 0px;
     position: absolute;
+    background-position: center;
     top: 0;
     right: 0;
     cursor: pointer;
@@ -22,9 +22,8 @@
 
 @media screen and (max-width: 425px) {
     .popup__close {
-        width: 26px;
-        height: 26px;
-        top: -15px;
-        right: 20px;
+        background-size: contain;
+        top: -33px;
+        right: 17px;
     }
 }
