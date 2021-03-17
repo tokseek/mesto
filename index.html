@@ -12,10 +12,10 @@
 
     <!--    H E A D E R -->
 
-    <div class="header">
+    <header class="header">
         <a class="header__link" href="#" target="_blank">
             <img class="header__logo" src="./images/logo.svg" alt="Логотип" title="Mesto"></a>
-    </div>
+    </header>
 
     <!--    C O N T E N T -->
 
@@ -24,92 +24,91 @@
         <!--    P R O F I L E -->
 
         <section class="profile">
-            <img class="profile__avatar" src="./images/avatar.png" alt="Фотография профиля">
+            <img class="profile__avatar" src="./images/avatar.jpg" alt="Фотография профиля">
             <div class="profile__items">
                 <div class="profile__info">
                     <h1 class="profile__name">Имя Фамилия</h1>
-                    <button class="profile__edit-button"></button>
+                    <button class="profile__edit-button" type="button"></button>
                 </div>
                 <p class="profile__status">Ломография, путешествия, коллекционирование</p>
             </div>
-            <button class="profile__add-button">
+            <button class="profile__add-button" type="button">
             </button>
         </section>
 
         <!--    E L E M E N T S   -->
 
-        <article class="elements">
-            <ul class="elements__items">
-                <li class="elements__item">
+        <section class="elements">
+            <div class="elements__items">
+                <div class="elements__item">
                     <img class="elements__image" alt="Заброшенный ретро автомобиль"
                         src="./images/bruno-neurath-wilson-K6KIz8ydsi8-unsplash.jpg">
                     <div class="elements__box">
                         <h2 class="elements__title">Ретро автомобиль</h2>
-                        <button class="elements__button-like"></button>
+                        <button class="elements__button-like" type="button"></button>
                     </div>
-                </li>
-                <li class="elements__item">
+                </div>
+                <div class="elements__item">
                     <img class="elements__image" alt="Фотоаппарат Diana F+"
                         src="./images/bambi-corro-GLZ0b6ZmYek-unsplash.jpg">
                     <div class="elements__box">
                         <h2 class="elements__title">Diana F+</h2>
-                        <button class="elements__button-like"></button>
+                        <button class="elements__button-like" type="button"></button>
                     </div>
-                </li>
-                <li class="elements__item">
+                </div>
+                <div class="elements__item">
                     <img class="elements__image" alt="Верблюды в закате"
                         src="./images/bernice-tong-VPTSmbGba7Q-unsplash.jpg">
                     <div class="elements__box">
                         <h2 class="elements__title">Верблюды</h2>
-                        <button class="elements__button-like"></button>
+                        <button class="elements__button-like" type="button"></button>
                     </div>
-                </li>
-                <li class="elements__item">
+                </div>
+                <div class="elements__item">
                     <img class="elements__image" alt="Фотоаппарат Polaroid"
                         src="./images/camila-quintero-franco-Yg1JBNAUC48-unsplash.jpg">
                     <div class="elements__box">
                         <h2 class="elements__title">Polaroid</h2>
-                        <button class="elements__button-like"></button>
+                        <button class="elements__button-like" type="button"></button>
                     </div>
-                </li>
-                <li class="elements__item">
+                </div>
+                <div class="elements__item">
                     <img class="elements__image" alt="Колесо обозрения"
                         src="./images/linda-holman-6jTlmUWGweE-unsplash.jpg">
                     <div class="elements__box">
                         <h2 class="elements__title">Колесо Обозрения</h2>
-                        <button class="elements__button-like"></button>
+                        <button class="elements__button-like" type="button"></button>
                     </div>
-                </li>
-                <li class="elements__item">
+                </div>
+                <div class="elements__item">
                     <img class="elements__image" alt="Фотопленки"
                         src="./images/markus-winkler-CiA0uLEKeUI-unsplash.jpg">
                     <div class="elements__box">
                         <h2 class="elements__title">Фотоплёнка</h2>
-                        <button class="elements__button-like"></button>
+                        <button class="elements__button-like" type="button"></button>
                     </div>
-                </li>
-            </ul>
-        </article>
-
-        <!--    F O O T E R -->
-
-        <footer class="footer">
-            <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
-        </footer>
+                </div>
+            </div>
+        </section>
     </main>
+
+    <!--    F O O T E R -->
+
+    <footer class="footer">
+        <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
+    </footer>
 
     <!--    P O P U P   -->
 
     <div class="popup">
-        <div class="popup__overlay"></div>
         <div class="popup__content">
-            <button class="popup__close"></button>
-            <form class="popup__form">
+            <button class="popup__close" type="button"></button>
+            <form class="popup__form" name="form-edit-profile">
                 <fieldset class="popup__fieldset">
                     <h2 class="popup__title">Редактировать профиль</h2>
-                    <input class="popup__input popup__input-name" type="text" placeholder="Ваше имя">
-                    <input class="popup__input popup__input-status" type="text" placeholder="Ваш род деятельности">
-                    <input class="popup__submit" type="submit" value="Сохранить">
+                    <input class="popup__input" type="text" name="input-name" placeholder="Ваше имя" id="input-name">
+                    <input class="popup__input" type="text" name="input-status" placeholder="Ваш род деятельности" id="input-status">
+                    <button class="popup__submit" type="submit">Сохранить</button>
                 </fieldset>
             </form>
         </div>

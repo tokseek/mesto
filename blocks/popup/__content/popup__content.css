@@ -3,14 +3,12 @@
     margin: auto;
     display: flex;
     max-width: 430px;
-    max-height: 330px;
     padding: 40px;
 }
 
 @media screen and (max-width: 425px) {
     .popup__content {
         max-width: 282px;
-        max-height: 322px;
         padding: 19px;
     }
 }

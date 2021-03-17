@@ -8,4 +8,5 @@
     height: 100%;
     opacity: 0;
     transition: opacity .40s, visibility .40s ease;
+    background: rgb(0 0 0 / 50%);
 }
