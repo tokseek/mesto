@@ -20,7 +20,7 @@
     outline: none;
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 320px) {
     .profile__add-button {
         width: 100%;
         background-size: 16px;

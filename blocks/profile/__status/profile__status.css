@@ -1,7 +1,7 @@
 .profile__status {
     font-size: 18px;
     line-height: 22px;
-    margin: 16px 0 0;
+    margin: 9px 0 0px;
     text-overflow: ellipsis;
     overflow: hidden;
 }
@@ -17,6 +17,7 @@
     .profile__status {
         font-size: 14px;
         line-height: 17px;
-        margin-top: 14px;
+        margin-top: 7px;
+        margin-bottom: 33px;
     }
 }
