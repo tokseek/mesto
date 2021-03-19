@@ -43,6 +43,7 @@
 <!-- 
     Добрый день!
     Ниже описал как понял после прочтения статьи и просмотра видео на медиум.
+    про миксы из статьи понял, но не пойму зачем они тут. Пришел к тому что микс можно добавить к списку ul.
 
     Есть ли у нас еще время поучится таким образом?) или уже пора сдавать? 
     ..начинаю беспокоится, но с миксами хотелось бы разобраться полностью.
@@ -51,9 +52,9 @@
 
 
         <section class="section-elements"> <!-- секцию нужно назвать подругому не 'elements' как было. Иначе стили блока 'elements' будут применяться к секции с именем 'elements'-->
-            <ul class="elements elements__item"> <!-- блок 'elements', микс 'elements__items' в который запишутся 
-                селекторы именно под этот блок, а на случай если блок 'elements' используется где то еще, там будет другой микс или не будет микса-->
-                 <li class="element elements__item"> <!-- отделный блок element + микс от родителя-->
+            <ul class="elements elements__item"> <!-- блок 'elements'+ микс 'elements__items' в который запишутся 
+                селекторы именно под этот блок, а на случай если блок 'elements' используется где то еще, там будет другой микс или не будет микса -->
+                 <li class="element"> <!-- отделный блок element -->
                     <img class="element__image" alt="Заброшенный ретро автомобиль" 
                     src="./images/bruno-neurath-wilson-K6KIz8ydsi8-unsplash.jpg"> <!--элемент 'image' блока element 
                         - не может использоваться отдельно от блока 'element' -->
@@ -91,7 +92,7 @@
                         src="./images/linda-holman-6jTlmUWGweE-unsplash.jpg">
                     <div class="element__box">
                         <h2 class="element__title">Колесо Обозрения</h2>
-                        <button class="elements__button-like" type="button"></button>
+                        <button class="element__button-like" type="button"></button>
                     </div>
                 </li>
                 <li class="element">
@@ -101,7 +102,7 @@
                         <h2 class="element__title">Фотоплёнка</h2>
                         <button class="element__button-like" type="button"></button>
                     </div>
-                </li> -->
+                </li>
             </ul>
         </section>
     </main>
