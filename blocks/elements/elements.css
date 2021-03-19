@@ -1,2 +1,7 @@
 .elements {
+    list-style: none;
+    line-height: 0;
+    margin: 0;
+    padding: 0;
+
 }

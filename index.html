@@ -42,28 +42,26 @@
 
 <!-- 
     Добрый день!
-    Ниже описал как понял после прочтения статьи и просмотра видео на медиум . По css ни чего не делал. если все првильно то сделаю.
+    Ниже описал как понял после прочтения статьи и просмотра видео на медиум.
 
-    ниже сделал без микса, как в первой рекомендации.
     Есть ли у нас еще время поучится таким образом?) или уже пора сдавать? 
     ..начинаю беспокоится, но с миксами хотелось бы разобраться полностью.
+
 -->
 
 
-        <section class="section-elements"> <!-- секцию нужно назвать подругому не 'elements' как было, иначе стили блока 'elements' будут применяться к секции с именем 'elements'-->
-            <ul class="elements elements__items"> <!-- блок 'elements', микс 'elements__items' в который запишутся 
+        <section class="section-elements"> <!-- секцию нужно назвать подругому не 'elements' как было. Иначе стили блока 'elements' будут применяться к секции с именем 'elements'-->
+            <ul class="elements elements__item"> <!-- блок 'elements', микс 'elements__items' в который запишутся 
                 селекторы именно под этот блок, а на случай если блок 'elements' используется где то еще, там будет другой микс или не будет микса-->
-                 <li class="elements-item"> <!-- отделный блок elements-item-->
-                    <img class="elements-item__image" alt="Заброшенный ретро автомобиль" 
-                    src="./images/bruno-neurath-wilson-K6KIz8ydsi8-unsplash.jpg"> <!--элемент 'image' блока elements-item 
-                        - не может использоваться отдельно от блока 'elements-item' -->
-                    <div class="elements-item__box">
-                        <h2 class="elements-item__title">Ретро автомобиль</h2>
-                        <button class="elements-item__button-like" type="button"></button>
+                 <li class="element elements__item"> <!-- отделный блок element + микс от родителя-->
+                    <img class="element__image" alt="Заброшенный ретро автомобиль" 
+                    src="./images/bruno-neurath-wilson-K6KIz8ydsi8-unsplash.jpg"> <!--элемент 'image' блока element 
+                        - не может использоваться отдельно от блока 'element' -->
+                    <div class="element__box">
+                        <h2 class="element__title">Ретро автомобиль</h2>
+                        <button class="element__button-like" type="button"></button>
                     </div>
                 </li>
-
-<!-- Без микса-->
                  <li class="element">
                     <img class="element__image" alt="Фотоаппарат Diana F+"
                         src="./images/bambi-corro-GLZ0b6ZmYek-unsplash.jpg">
