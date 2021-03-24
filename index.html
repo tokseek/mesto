@@ -40,7 +40,7 @@
 
         <!--    E L E M E N T S   -->
 
-<!-- 
+        <!-- 
     Добрый день!
     Ниже описал как понял после прочтения статьи и просмотра видео на медиум.
     про миксы из статьи понял, но не пойму зачем они тут. Пришел к тому что микс можно добавить к списку ul.
@@ -55,22 +55,26 @@
 -->
 
 
-        <section class="section-elements"> <!-- секцию нужно назвать подругому не 'elements' как было. Иначе стили блока 'elements' будут применяться к секции с именем 'elements'-->
-            <ul class="elements"> <!-- блок 'elements'+ микс 'elements__item' в который запишутся 
+        <section class="section-elements">
+            <!-- секцию нужно назвать подругому не 'elements' как было. Иначе стили блока 'elements' будут применяться к секции с именем 'elements'-->
+            <ul class="elements">
+                <!-- блок 'elements'+ микс 'elements__item' в который запишутся 
                 селекторы именно под этот блок, а на случай если блок 'elements' используется где то еще, там будет другой микс или не будет микса 
             
                 микс убрал, потому что тренажер не пропускает( ибо я что то ни так делать)
             -->
-                 <li class="element"> <!-- отделный блок element -->
-                    <img class="element__image" alt="Заброшенный ретро автомобиль" 
-                    src="./images/bruno-neurath-wilson-K6KIz8ydsi8-unsplash.jpg"> <!--элемент 'image' блока element 
+                <li class="element">
+                    <!-- отделный блок element -->
+                    <img class="element__image" alt="Заброшенный ретро автомобиль"
+                        src="./images/bruno-neurath-wilson-K6KIz8ydsi8-unsplash.jpg">
+                    <!--элемент 'image' блока element 
                         - не может использоваться отдельно от блока 'element' -->
                     <div class="element__box">
                         <h2 class="element__title">Ретро автомобиль</h2>
                         <button class="element__button-like" type="button"></button>
                     </div>
                 </li>
-                 <li class="element">
+                <li class="element">
                     <img class="element__image" alt="Фотоаппарат Diana F+"
                         src="./images/bambi-corro-GLZ0b6ZmYek-unsplash.jpg">
                     <div class="element__box">
@@ -103,8 +107,7 @@
                     </div>
                 </li>
                 <li class="element">
-                    <img class="element__image" alt="Фотопленки"
-                        src="./images/markus-winkler-CiA0uLEKeUI-unsplash.jpg">
+                    <img class="element__image" alt="Фотопленки" src="./images/markus-winkler-CiA0uLEKeUI-unsplash.jpg">
                     <div class="element__box">
                         <h2 class="element__title">Фотоплёнка</h2>
                         <button class="element__button-like" type="button"></button>
@@ -138,6 +141,16 @@
     </div>
 
     <!--    JAVA SCRIPT   -->
+
+    <template class="element-template">
+        <li class="element">
+            <img class="element__image" alt="" src="">
+            <div class="element__box">
+                <h2 class="element__title"></h2>
+                <button class="element__button-like" type="button"></button>
+            </div>
+        </li>
+    </template>
 
     <script src="scripts/index.js"></script>
 </body>

@@ -21,6 +21,29 @@ function openPopup() {
     inputStatus.value = profileStatus.textContent;
 }
 
+// находим элемент список (ul elements) и присваем переменную
+const elementsList = document.querySelector('.elements');
+// получаем содержимое template элемента element-tamplate обращаясь к его свойству .content
+const elementTemplate = document.querySelector('.element-template').content;
+
+// объявляем переменную массиву с фотографиям
+const initialElement = [
+    {
+        elementName: 'Мельница',
+        elementLink: 'https://source.unsplash.com/photos/hUNdAGhebAM/640x426',
+    },
+    {
+        elementName: '',
+        elementLink: '',
+    },
+];
+
+// вызываем метод forEach массива initialElement
+initialElement.forEach(function (item) { 
+    // клонируем element-template и записываем в переменную 
+    const elementItem = elementTemplate.cloneNode(true); 
+});
+
 // объявляем функцию закрытия модального окна 
 function closePopup() {
     // удаляем атрибут popup_opened
