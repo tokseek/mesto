@@ -108,3 +108,4 @@ closePopupBtn.addEventListener('click', closePopup);
 addImgBtn.addEventListener('click', openPopupAddImg);
 // добавляем слушатель клика на кнопку закрыть попап Добавить Место, вызываем функцию закрытия модального окна
 closeFormAddPlace.addEventListener('click', closePopupAddImg);
+//ERROR
