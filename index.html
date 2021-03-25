@@ -73,6 +73,7 @@
                         <h2 class="element__title">Ретро автомобиль</h2>
                         <button class="element__button-like" type="button"></button>
                     </div>
+                    <button class="element__button-trash" type="button"></button>
                 </li>
                 <li class="element">
                     <img class="element__image" alt="Фотоаппарат Diana F+"
@@ -131,9 +132,9 @@
             <form class="popup__form" name="form-edit-profile">
                 <fieldset class="popup__fieldset">
                     <h2 class="popup__title">Редактировать профиль</h2>
-                    <input class="popup__input" type="text" name="input-name" placeholder="Ваше имя" id="input-name">
-                    <input class="popup__input" type="text" name="input-status" placeholder="Ваш род деятельности"
-                        id="input-status">
+                    <input class="popup__input" type="text" name="input-profile-name" placeholder="Ваше имя" id="input-profile-name">
+                    <input class="popup__input" type="text" name="input-profile-status" placeholder="Ваш род деятельности"
+                        id="input-profile-status">
                     <button class="popup__submit" type="submit">Сохранить</button>
                 </fieldset>
             </form>
@@ -143,11 +144,11 @@
     <div class="popup popup-add-img">
         <div class="popup__content">
             <button class="popup__btn-close popup__btn-close-add-img" type="button"></button>
-            <form class="popup__form" name="form-add-img">
+            <form class="popup__form popup-form-place" name="form-add-img">
                 <fieldset class="popup__fieldset">
                     <h2 class="popup__title">Новое место</h2>
-                    <input class="popup__input" type="text" name="input-place-name" placeholder="Название" id="input-place-name">
-                    <input class="popup__input" type="url" name="input-place-url" placeholder="Ссылка на картинку"
+                    <input class="popup__input" required type="text" name="input-place-name" placeholder="Название" id="input-place-name">
+                    <input class="popup__input" required type="url" name="input-place-url" placeholder="Ссылка на картинку"
                         id="input-place-url">
                     <button class="popup__submit" type="submit">Создать</button>
                 </fieldset>
