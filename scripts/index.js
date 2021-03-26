@@ -86,6 +86,31 @@ const initialElement = [
         elementName: 'Параплан',
         elementLink: 'https://images.unsplash.com/photo-1597104831784-1fce445bcdda',
     },
+    {
+        elementName: 'Заброшенный ретро автомобиль',
+        elementLink: './images/bruno-neurath-wilson-K6KIz8ydsi8-unsplash.jpg',
+    },
+    {
+        elementName: 'Diana F+',
+        elementLink: './images/bambi-corro-GLZ0b6ZmYek-unsplash.jpg',
+    },
+    {
+        elementName: 'Случайное фото',
+        elementLink: 'https://source.unsplash.com/collection/35mm-film',
+    },
+    {
+        elementName: 'Фотоаппарат Polaroid',
+        elementLink: './images/camila-quintero-franco-Yg1JBNAUC48-unsplash.jpg',
+    },
+    {
+        elementName: 'Колесо обозрения',
+        elementLink: './images/linda-holman-6jTlmUWGweE-unsplash.jpg',
+    },
+    {
+        elementName: 'Фотоплёнка',
+        elementLink: './images/markus-winkler-CiA0uLEKeUI-unsplash.jpg',
+    },
+   
 ];
 
 // вызываем метод forEach массива initialElement
@@ -95,8 +120,13 @@ initialElement.forEach(function (item) {
 
     const placeItems = elementItem.querySelector('.element');
     const placeBtnDel = elementItem.querySelector('.element__button-trash');
-    placeBtnDel.addEventListener('click', () => placeItems.remove()
-    )
+    const placeBtnLike = elementItem.querySelector('.element__button-like');
+
+    // добавляем слушатель клика по кнопке Удаление карточки, вызываем функцию удаления карточки
+    placeBtnDel.addEventListener('click', () => placeItems.remove())
+    
+    // слушатель клика по сердечку, вызываем функцию лайк
+    placeBtnLike.addEventListener('click', () => placeBtnLike.classList.add('button-like-active'))
 
     elementItem.querySelector('.element__title').textContent = item.elementName;
     elementItem.querySelector('.element__image').alt = item.elementName;
@@ -140,6 +170,10 @@ function addPlace(event) {
 
     event.preventDefault();
     closePopupAddImg();
+    
+    placeBtnDel.addEventListener('click', () => placeContainer.remove())
+    placeBtnLike.addEventListener('click', () => placeBtnLike.classList.add('button-like-active'))
+    
 }
 
 
@@ -148,20 +182,10 @@ const inputPlaceName = document.querySelector('#input-place-name');
 const inputPlaceUrl = document.querySelector('#input-place-url');
 const submitPlaceBtn = document.querySelector('.popup-form-place');
 
-const placeItems = document.querySelector('.element');
-const placeDel = placeItems.querySelector('.element__button-trash');
-placeDel.addEventListener('click', () => elementsList.remove()
-)
+
 
 submitPlaceBtn.addEventListener('submit', addPlace);
 
-// const elem = document.querySelector('.elements');
-// const placeBtnDel = elem.querySelector('.element__button-trash');
-
-// placeBtnDel.addEventListener('click', function () {
-//     console.log('clik!');
-
-// });
 
 
 

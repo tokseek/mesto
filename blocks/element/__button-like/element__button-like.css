@@ -12,13 +12,8 @@
 
 .element__button-like:hover {
     opacity: .5;
-    
 }
 
-.element__button-like:focus {
-    background: url(../../../images/heart_active.svg);
-    outline: none;
-}
 .element__button-like:focus:hover {
     background: url(../../../images/heart_active.svg);
     outline: none;

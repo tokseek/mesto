@@ -1,0 +1,4 @@
+.button-like-active {
+    background: url(../../../../images/heart_active.svg);
+    outline: none;
+}
