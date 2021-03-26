@@ -12,7 +12,6 @@ let inputProfileName = document.querySelector('#input-profile-name');
 /* получаем по идентификатору(id) поле ввода Статуса и сохраняем в переменной inputStatus */
 let inputProfileStatus = document.querySelector('#input-profile-status');
 
-
 let popupAddImg = document.querySelector('.popup-add-img');
 let addImgBtn = document.querySelector('.profile__add-button');
 let closeFormAddPlace = document.querySelector('.popup__btn-close-add-img');
@@ -79,7 +78,6 @@ const initialElement = [
         elementName: 'Причал',
         elementLink: 'https://images.unsplash.com/photo-1590611698651-2f2fb9c6a44b',
     },
-
     {
         elementName: 'Уют',
         elementLink: 'https://cdn.pixabay.com/photo/2021/01/05/03/35/image-5889561_960_720.jpg',
@@ -90,18 +88,23 @@ const initialElement = [
     },
 ];
 
-
 // вызываем метод forEach массива initialElement
-initialElement.forEach(function (item) { 
+initialElement.forEach(function (item) {
     // клонируем element-template и записываем в переменную 
-    const elementItem = elementTemplate.cloneNode(true); 
+    const elementItem = elementTemplate.cloneNode(true);
 
-elementItem.querySelector('.element__title').textContent = item.elementName;
-elementItem.querySelector('.element__image').alt = item.elementName;
-elementItem.querySelector('.element__image').src = item.elementLink;
-elementsList.prepend(elementItem);
+    const placeItems = elementItem.querySelector('.element');
+    const placeBtnDel = elementItem.querySelector('.element__button-trash');
+    placeBtnDel.addEventListener('click', () => placeItems.remove()
+    )
+
+    elementItem.querySelector('.element__title').textContent = item.elementName;
+    elementItem.querySelector('.element__image').alt = item.elementName;
+    elementItem.querySelector('.element__image').src = item.elementLink;
+    elementsList.prepend(elementItem);
+
+
 });
-
 
 const place = document.querySelector('.elements');
 
@@ -126,8 +129,12 @@ function addPlace(event) {
     const placeBtnLike = document.createElement('button');
     placeBtnLike.classList.add('element__button-like');
 
+    const placeBtnDel = document.createElement('button');
+    placeBtnDel.classList.add('element__button-trash');
+
+
     // добавляем элементы
-    placeContainer.append(placeImg, placeBox);
+    placeContainer.append(placeImg, placeBox, placeBtnDel);
     placeBox.append(placeTitle, placeBtnLike);
     place.prepend(placeContainer);
 
@@ -136,11 +143,25 @@ function addPlace(event) {
 }
 
 
+
 const inputPlaceName = document.querySelector('#input-place-name');
 const inputPlaceUrl = document.querySelector('#input-place-url');
 const submitPlaceBtn = document.querySelector('.popup-form-place');
 
+const placeItems = document.querySelector('.element');
+const placeDel = placeItems.querySelector('.element__button-trash');
+placeDel.addEventListener('click', () => elementsList.remove()
+)
+
 submitPlaceBtn.addEventListener('submit', addPlace);
+
+// const elem = document.querySelector('.elements');
+// const placeBtnDel = elem.querySelector('.element__button-trash');
+
+// placeBtnDel.addEventListener('click', function () {
+//     console.log('clik!');
+
+// });
 
 
 

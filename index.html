@@ -40,35 +40,12 @@
 
         <!--    E L E M E N T S   -->
 
-        <!-- 
-    Добрый день!
-    Ниже описал как понял после прочтения статьи и просмотра видео на медиум.
-    про миксы из статьи понял, но не пойму зачем они тут. Пришел к тому что микс можно добавить к списку ul.
-
-    Есть ли у нас еще время поучится таким образом?) или уже пора сдавать? 
-    ..начинаю беспокоится, но с миксами хотелось бы разобраться полностью.
-
-    Тренажер не пропускает: 
-    Файл: index.html, строка: 59. Либо класс elements__item написан не по БЭМ, либо возникла проблема с вложенностью.
-
-
--->
-
 
         <section class="section-elements">
-            <!-- секцию нужно назвать подругому не 'elements' как было. Иначе стили блока 'elements' будут применяться к секции с именем 'elements'-->
             <ul class="elements">
-                <!-- блок 'elements'+ микс 'elements__item' в который запишутся 
-                селекторы именно под этот блок, а на случай если блок 'elements' используется где то еще, там будет другой микс или не будет микса 
-            
-                микс убрал, потому что тренажер не пропускает( ибо я что то ни так делать)
-            -->
                 <li class="element">
-                    <!-- отделный блок element -->
                     <img class="element__image" alt="Заброшенный ретро автомобиль"
                         src="./images/bruno-neurath-wilson-K6KIz8ydsi8-unsplash.jpg">
-                    <!--элемент 'image' блока element 
-                        - не может использоваться отдельно от блока 'element' -->
                     <div class="element__box">
                         <h2 class="element__title">Ретро автомобиль</h2>
                         <button class="element__button-like" type="button"></button>
@@ -82,6 +59,7 @@
                         <h2 class="element__title">Diana F+</h2>
                         <button class="element__button-like" type="button"></button>
                     </div>
+                    <button class="element__button-trash" type="button"></button>
                 </li>
                 <li class="element">
                     <img class="element__image" alt="Верблюды в закате"
@@ -90,6 +68,7 @@
                         <h2 class="element__title">Верблюды</h2>
                         <button class="element__button-like" type="button"></button>
                     </div>
+                    <button class="element__button-trash" type="button"></button>
                 </li>
                 <li class="element">
                     <img class="element__image" alt="Фотоаппарат Polaroid"
@@ -98,6 +77,7 @@
                         <h2 class="element__title">Polaroid</h2>
                         <button class="element__button-like" type="button"></button>
                     </div>
+                    <button class="element__button-trash" type="button"></button>
                 </li>
                 <li class="element">
                     <img class="element__image" alt="Колесо обозрения"
@@ -106,6 +86,7 @@
                         <h2 class="element__title">Колесо Обозрения</h2>
                         <button class="element__button-like" type="button"></button>
                     </div>
+                    <button class="element__button-trash" type="button"></button>
                 </li>
                 <li class="element">
                     <img class="element__image" alt="Фотопленки" src="./images/markus-winkler-CiA0uLEKeUI-unsplash.jpg">
@@ -113,6 +94,7 @@
                         <h2 class="element__title">Фотоплёнка</h2>
                         <button class="element__button-like" type="button"></button>
                     </div>
+                    <button class="element__button-trash" type="button"></button>
                 </li>
             </ul>
         </section>
@@ -132,9 +114,10 @@
             <form class="popup__form" name="form-edit-profile">
                 <fieldset class="popup__fieldset">
                     <h2 class="popup__title">Редактировать профиль</h2>
-                    <input class="popup__input" type="text" name="input-profile-name" placeholder="Ваше имя" id="input-profile-name">
-                    <input class="popup__input" type="text" name="input-profile-status" placeholder="Ваш род деятельности"
-                        id="input-profile-status">
+                    <input class="popup__input" type="text" name="input-profile-name" placeholder="Ваше имя"
+                        id="input-profile-name">
+                    <input class="popup__input" type="text" name="input-profile-status"
+                        placeholder="Ваш род деятельности" id="input-profile-status">
                     <button class="popup__submit" type="submit">Сохранить</button>
                 </fieldset>
             </form>
@@ -147,9 +130,10 @@
             <form class="popup__form popup-form-place" name="form-add-img">
                 <fieldset class="popup__fieldset">
                     <h2 class="popup__title">Новое место</h2>
-                    <input class="popup__input" required type="text" name="input-place-name" placeholder="Название" id="input-place-name">
-                    <input class="popup__input" required type="url" name="input-place-url" placeholder="Ссылка на картинку"
-                        id="input-place-url">
+                    <input class="popup__input" required type="text" name="input-place-name" placeholder="Название"
+                        id="input-place-name">
+                    <input class="popup__input" required type="url" name="input-place-url"
+                        placeholder="Ссылка на картинку" id="input-place-url">
                     <button class="popup__submit" type="submit">Создать</button>
                 </fieldset>
             </form>
@@ -158,6 +142,7 @@
 
     <!--    JAVA SCRIPT   -->
 
+    <!-- template -->
     <template class="element-template">
         <li class="element">
             <img class="element__image" alt="" src="">
@@ -165,9 +150,11 @@
                 <h2 class="element__title"></h2>
                 <button class="element__button-like" type="button"></button>
             </div>
+            <button class="element__button-trash" type="button"></button>
         </li>
     </template>
 
+    <!-- script -->
     <script src="scripts/index.js"></script>
 </body>
 
