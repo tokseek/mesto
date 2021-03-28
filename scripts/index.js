@@ -5,21 +5,24 @@ let closePopupBtn = document.querySelector('.popup__btn-close');
 let profileName = document.querySelector('.profile__name');
 let profileStatus = document.querySelector('.profile__status');
 let formSubmit = document.querySelector('.popup__form');
-
 /* получаем по идентификатору(id) поле ввода Имени и сохраняем в переменной inputName */
 let inputProfileName = document.querySelector('#input-profile-name');
-
 /* получаем по идентификатору(id) поле ввода Статуса и сохраняем в переменной inputStatus */
 let inputProfileStatus = document.querySelector('#input-profile-status');
-
 let popupAddImg = document.querySelector('.popup-add-img');
 let addImgBtn = document.querySelector('.profile__add-button');
 let closeFormAddPlace = document.querySelector('.popup__btn-close-add-img');
-
+const place = document.querySelector('.elements');
 // находим элемент список (ul elements) и присваем переменную
 const elementsList = document.querySelector('.elements');
 // получаем содержимое template элемента element-tamplate обращаясь к его свойству .content
 const elementTemplate = document.querySelector('.element-template').content;
+const viewImg = document.querySelector('.popup-view-img');
+const closeViewImg = document.querySelector('.popup__button-close-view-img');
+const fullImage = document.querySelector('.popup__img');
+const inputPlaceName = document.querySelector('#input-place-name');
+const inputPlaceUrl = document.querySelector('#input-place-url');
+const submitPlaceBtn = document.querySelector('.popup-form-place');
 
 // объявляем функцию открытия модального окна Редактировать Профиль
 function openPopup() {
@@ -41,6 +44,15 @@ function openPopupAddImg() {
 // объявляем функцию закрытия модального окна Добавить Место
 function closePopupAddImg() {
     popupAddImg.classList.remove('popup_opened');
+}
+
+// объявляем функцию открытия модального окна Просмотра Изображения
+function openPopupViewImg() {
+    viewImg.classList.add('popup_opened');
+}
+// объявляем функциюзакрытия модального окна Просмотра Изображения
+function closePopupViewImg() {
+    viewImg.classList.remove('popup_opened');
 }
 
 // объявляем функцию изменения значений в профиле 
@@ -110,21 +122,27 @@ const initialElement = [
         elementName: 'Фотоплёнка',
         elementLink: './images/markus-winkler-CiA0uLEKeUI-unsplash.jpg',
     },
-   
+
 ];
 
 // вызываем метод forEach массива initialElement
 initialElement.forEach(function (item) {
     // клонируем element-template и записываем в переменную 
     const elementItem = elementTemplate.cloneNode(true);
-
+    // находим элементы в клоне темплейта присваиваем переменные
     const placeItems = elementItem.querySelector('.element');
     const placeBtnDel = elementItem.querySelector('.element__button-trash');
     const placeBtnLike = elementItem.querySelector('.element__button-like');
+    const placeImg = elementItem.querySelector('.element__image');
+// добавляем слушателя клика по изображению, присваиваем значения, вызываем функцию открытия модального окна
+    placeImg.addEventListener('click', function () {
+        fullImage.src = placeImg.src;
+        openPopupViewImg()
+    });
 
     // добавляем слушатель клика по кнопке Удаление карточки, вызываем функцию удаления карточки
     placeBtnDel.addEventListener('click', () => placeItems.remove())
-    
+
     // слушатель клика по сердечку, вызываем функцию лайк
     placeBtnLike.addEventListener('click', () => placeBtnLike.classList.add('button-like-active'))
 
@@ -133,12 +151,9 @@ initialElement.forEach(function (item) {
     elementItem.querySelector('.element__image').src = item.elementLink;
     elementsList.prepend(elementItem);
 
-
 });
 
-const place = document.querySelector('.elements');
-
-// объявляем функцию создание элементов
+// объявляем функцию добавления изображения с помощью createElement
 function addPlace(event) {
     const placeContainer = document.createElement('li');
     placeContainer.classList.add('element');
@@ -162,33 +177,30 @@ function addPlace(event) {
     const placeBtnDel = document.createElement('button');
     placeBtnDel.classList.add('element__button-trash');
 
-
-    // добавляем элементы
+    // добавляем элементы в html
     placeContainer.append(placeImg, placeBox, placeBtnDel);
     placeBox.append(placeTitle, placeBtnLike);
     place.prepend(placeContainer);
 
     event.preventDefault();
+    // закрываем форму добавления нового места вызовом функции
     closePopupAddImg();
-    
+
+    // добавляем слушателя по клику корзины, удаляем карточку с изображением
     placeBtnDel.addEventListener('click', () => placeContainer.remove())
+    //  добавляем слушателя по клику сердечка, добавляем класс (ставим лайк)
     placeBtnLike.addEventListener('click', () => placeBtnLike.classList.add('button-like-active'))
-    
+    // добавляем слушателя клика по изображению, присваиваем значения, вызываем функцию открытия модального окна
+    placeImg.addEventListener('click', function(){
+        // присваиваем значения
+        fullImage.src = placeImg.src;
+        // открываем изображение
+        openPopupViewImg();
+    });
 }
 
-
-
-const inputPlaceName = document.querySelector('#input-place-name');
-const inputPlaceUrl = document.querySelector('#input-place-url');
-const submitPlaceBtn = document.querySelector('.popup-form-place');
-
-
-
+// добавляем слушатель отправки формы (сабмит) и вызываем функцию добавления новго места
 submitPlaceBtn.addEventListener('submit', addPlace);
-
-
-
-
 // добавляем слушатель отправки формы (сабмит) и вызываем функцию изменений значений
 formSubmit.addEventListener('submit', editProfile);
 // добавляем слушатель клика на кнопку Редактировать Профиль, вызываем функцию открытия модального окна
@@ -199,3 +211,5 @@ closePopupBtn.addEventListener('click', closePopup);
 addImgBtn.addEventListener('click', openPopupAddImg);
 // добавляем слушатель клика на кнопку закрыть попап Добавить Место, вызываем функцию закрытия модального окна
 closeFormAddPlace.addEventListener('click', closePopupAddImg);
+// добавляем слушатель клика на крестик закрыть попап, вызываем функцию закрытия модального окна с изображением. 
+closeViewImg.addEventListener('click', closePopupViewImg);
