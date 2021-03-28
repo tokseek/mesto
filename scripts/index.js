@@ -1,59 +1,39 @@
 // находим элементы в DOM, назначаем переменные
-let popupEditProfile = document.querySelector('.popup-edit-profile');
-let editProfileBtn = document.querySelector('.profile__edit-button');
-let closePopupBtn = document.querySelector('.popup__btn-close');
-let profileName = document.querySelector('.profile__name');
-let profileStatus = document.querySelector('.profile__status');
-let formSubmit = document.querySelector('.popup__form');
+const pop = document.querySelector('.popup')
+//переменные модальных окон
+const popupEditProfile = document.querySelector('.popup-edit-profile');
+const popupAddImg = document.querySelector('.popup-add-img');
+const viewImg = document.querySelector('.popup-view-img');
+//элементы открытия модальных окон
+const editProfileBtn = document.querySelector('.profile__edit-button');
+const addImgBtn = document.querySelector('.profile__add-button');
+//элементы закрытия модальных окон
+const closePopupBtn = popupEditProfile.querySelector('.popup__btn-close');
+const closeFormAddPlace = popupAddImg.querySelector('.popup__btn-close');
+const closeViewImg = viewImg.querySelector('.popup__btn-close');
+//элементы профиля
+const profileName = document.querySelector('.profile__name');
+const profileStatus = document.querySelector('.profile__status');
+const formSubmit = document.querySelector('.popup__form');
+const fullImage = document.querySelector('.popup__img');
 /* получаем по идентификатору(id) поле ввода Имени и сохраняем в переменной inputName */
-let inputProfileName = document.querySelector('#input-profile-name');
+const inputProfileName = document.querySelector('#input-profile-name');
 /* получаем по идентификатору(id) поле ввода Статуса и сохраняем в переменной inputStatus */
-let inputProfileStatus = document.querySelector('#input-profile-status');
-let popupAddImg = document.querySelector('.popup-add-img');
-let addImgBtn = document.querySelector('.profile__add-button');
-let closeFormAddPlace = document.querySelector('.popup__btn-close-add-img');
+const inputProfileStatus = document.querySelector('#input-profile-status');
 const place = document.querySelector('.elements');
 // находим элемент список (ul elements) и присваем переменную
 const elementsList = document.querySelector('.elements');
 // получаем содержимое template элемента element-tamplate обращаясь к его свойству .content
 const elementTemplate = document.querySelector('.element-template').content;
-const viewImg = document.querySelector('.popup-view-img');
-const closeViewImg = document.querySelector('.popup__button-close-view-img');
-const fullImage = document.querySelector('.popup__img');
 const imgTitle = document.querySelector('.popup__img-title');
 const inputPlaceName = document.querySelector('#input-place-name');
 const inputPlaceUrl = document.querySelector('#input-place-url');
 const submitPlaceBtn = document.querySelector('.popup-form-place');
 
 // объявляем функцию открытия модального окна Редактировать Профиль
-function openPopup() {
+function togglePopup(pop) {
     // к элементу popup добавляем атрибут popup_opened  
-    popupEditProfile.classList.add('popup_opened');
-    // полям ввода присваиваем значения из профиля
-    inputProfileName.value = profileName.textContent;
-    inputProfileStatus.value = profileStatus.textContent;
-}
-// объявляем функцию закрытия модального окна Редактировать Профиль
-function closePopup() {
-    // удаляем атрибут popup_opened
-    popupEditProfile.classList.remove('popup_opened');
-}
-// объявляем функцию открытия модального окна Добавить Место
-function openPopupAddImg() {
-    popupAddImg.classList.add('popup_opened');
-}
-// объявляем функцию закрытия модального окна Добавить Место
-function closePopupAddImg() {
-    popupAddImg.classList.remove('popup_opened');
-}
-
-// объявляем функцию открытия модального окна Просмотра Изображения
-function openPopupViewImg() {
-    viewImg.classList.add('popup_opened');
-}
-// объявляем функциюзакрытия модального окна Просмотра Изображения
-function closePopupViewImg() {
-    viewImg.classList.remove('popup_opened');
+    pop.classList.toggle('popup_opened');
 }
 
 // объявляем функцию изменения значений в профиле 
@@ -70,7 +50,7 @@ function editProfile(event) {
     profileName.textContent = inputProfileName.value;
     profileStatus.textContent = inputProfileStatus.value;
     // вызов функции закрытия модального окна
-    closePopup()
+    togglePopup(popupEditProfile)
 }
 
 // объявляем переменную массиву с фотографиям
@@ -140,7 +120,7 @@ initialElement.forEach(function (item) {
         fullImage.src = placeImg.src;
         fullImage.alt = item.elementName;
         imgTitle.textContent = item.elementName;
-        openPopupViewImg()
+        togglePopup(viewImg);
     });
 
     // добавляем слушатель клика по кнопке Удаление карточки, вызываем функцию удаления карточки
@@ -188,7 +168,7 @@ function addPlace(event) {
 
     event.preventDefault();
     // закрываем форму добавления нового места вызовом функции
-    closePopupAddImg();
+    togglePopup(popupAddImg);
 
     // добавляем слушателя по клику корзины, удаляем карточку с изображением
     placeBtnDel.addEventListener('click', () => placeContainer.remove())
@@ -201,7 +181,7 @@ function addPlace(event) {
         fullImage.alt = inputPlaceName.value;
         imgTitle.textContent = inputPlaceName.value;
         // открываем изображение
-        openPopupViewImg();
+        togglePopup(viewImg);
     });
 }
 
@@ -210,12 +190,16 @@ submitPlaceBtn.addEventListener('submit', addPlace);
 // добавляем слушатель отправки формы (сабмит) и вызываем функцию изменений значений
 formSubmit.addEventListener('submit', editProfile);
 // добавляем слушатель клика на кнопку Редактировать Профиль, вызываем функцию открытия модального окна
-editProfileBtn.addEventListener('click', openPopup);
+editProfileBtn.addEventListener('click', function() {
+    inputProfileName.value = profileName.textContent;
+    inputProfileStatus.value = profileStatus.textContent;
+    togglePopup(popupEditProfile)
+});
 // добавляем слушатель клика на кнопку закрыть попап Редактировать Профиль, вызываем функцию закрытия модального окна
-closePopupBtn.addEventListener('click', closePopup);
+closePopupBtn.addEventListener('click', () => togglePopup(popupEditProfile));
 // добавляем слушатель клика на кнопку Добавить Место, вызываем функцию открытия модального окна
-addImgBtn.addEventListener('click', openPopupAddImg);
+addImgBtn.addEventListener('click', () => togglePopup(popupAddImg));
 // добавляем слушатель клика на кнопку закрыть попап Добавить Место, вызываем функцию закрытия модального окна
-closeFormAddPlace.addEventListener('click', closePopupAddImg);
+closeFormAddPlace.addEventListener('click', () => togglePopup(popupAddImg));
 // добавляем слушатель клика на крестик закрыть попап, вызываем функцию закрытия модального окна с изображением. 
-closeViewImg.addEventListener('click', closePopupViewImg);
+closeViewImg.addEventListener('click',() => togglePopup(viewImg));
