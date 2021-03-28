@@ -20,6 +20,7 @@ const elementTemplate = document.querySelector('.element-template').content;
 const viewImg = document.querySelector('.popup-view-img');
 const closeViewImg = document.querySelector('.popup__button-close-view-img');
 const fullImage = document.querySelector('.popup__img');
+const imgTitle = document.querySelector('.popup__img-title');
 const inputPlaceName = document.querySelector('#input-place-name');
 const inputPlaceUrl = document.querySelector('#input-place-url');
 const submitPlaceBtn = document.querySelector('.popup-form-place');
@@ -137,6 +138,8 @@ initialElement.forEach(function (item) {
 // добавляем слушателя клика по изображению, присваиваем значения, вызываем функцию открытия модального окна
     placeImg.addEventListener('click', function () {
         fullImage.src = placeImg.src;
+        fullImage.alt = item.elementName;
+        imgTitle.textContent = item.elementName;
         openPopupViewImg()
     });
 
@@ -162,6 +165,7 @@ function addPlace(event) {
     placeImg.classList.add('element__image');
 
     placeImg.src = inputPlaceUrl.value;
+    placeImg.alt = inputPlaceName.value;
 
     const placeBox = document.createElement('div');
     placeBox.classList.add('element__box');
@@ -194,6 +198,8 @@ function addPlace(event) {
     placeImg.addEventListener('click', function(){
         // присваиваем значения
         fullImage.src = placeImg.src;
+        fullImage.alt = inputPlaceName.value;
+        imgTitle.textContent = inputPlaceName.value;
         // открываем изображение
         openPopupViewImg();
     });
