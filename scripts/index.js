@@ -29,7 +29,7 @@ const inputPlaceName = document.querySelector('#input-place-name');
 const inputPlaceUrl = document.querySelector('#input-place-url');
 const submitPlaceBtn = document.querySelector('.popup-form-place');
 
-// объявляем функцию открытия модального окна Редактировать Профиль
+// объявляем функцию открытия модального окна
 function togglePopup(pop) {
     // к элементу popup добавляем атрибут popup_opened  
     pop.classList.toggle('popup_opened');
