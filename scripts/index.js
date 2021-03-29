@@ -20,7 +20,6 @@ const fullImage = document.querySelector('.popup__img');
 const inputProfileName = document.querySelector('#input-profile-name');
 /* получаем по идентификатору(id) поле ввода Статуса и сохраняем в переменной inputStatus */
 const inputProfileStatus = document.querySelector('#input-profile-status');
-const place = document.querySelector('.elements');
 // находим элемент список (ul elements) и присваем переменную
 const elementsList = document.querySelector('.elements');
 // получаем содержимое template элемента element-tamplate обращаясь к его свойству .content
@@ -38,13 +37,6 @@ function togglePopup(pop) {
 
 // объявляем функцию изменения значений в профиле 
 function editProfile(event) {
-    // Метод позволяет отменить стандартные действия браузера по клику на кнопку (передача данных на сервер, обновление страницы).//
-    /* Метод preventDefault () интерфейса Event сообщает User agent (браузер), 
-    что если событие не обрабатывается явно, его действие по умолчанию не должно 
-    выполняться так, как обычно. Событие продолжает распространяться как обычно, 
-    до тех пор, пока один из его обработчиков не вызывает методы 
-    stopPropagation () или stopImmediatePropagation (), 
-    любой из которых сразу же прекращает распространение. */
     event.preventDefault();
     // меняем значения в профиле на введенные
     profileName.textContent = inputProfileName.value;
@@ -103,7 +95,6 @@ const initialElement = [
         elementName: 'Фотоплёнка',
         elementLink: './images/markus-winkler-CiA0uLEKeUI-unsplash.jpg',
     },
-
 ];
 
 // вызываем метод forEach массива initialElement
@@ -115,61 +106,63 @@ initialElement.forEach(function (item) {
     const placeBtnDel = elementItem.querySelector('.element__button-trash');
     const placeBtnLike = elementItem.querySelector('.element__button-like');
     const placeImg = elementItem.querySelector('.element__image');
-// добавляем слушателя клика по изображению, присваиваем значения, вызываем функцию открытия модального окна
-    placeImg.addEventListener('click', function () {
-        fullImage.src = placeImg.src;
-        fullImage.alt = item.elementName;
-        imgTitle.textContent = item.elementName;
-        togglePopup(viewImg);
-    });
-
-    // добавляем слушатель клика по кнопке Удаление карточки, вызываем функцию удаления карточки
-    placeBtnDel.addEventListener('click', () => placeItems.remove())
-
-    // слушатель клика по сердечку, вызываем функцию лайк
-    placeBtnLike.addEventListener('click', () => placeBtnLike.classList.add('button-like-active'))
 
     elementItem.querySelector('.element__title').textContent = item.elementName;
     elementItem.querySelector('.element__image').alt = item.elementName;
     elementItem.querySelector('.element__image').src = item.elementLink;
     elementsList.prepend(elementItem);
 
+    // добавляем слушатель клика по кнопке Удаление карточки, вызываем функцию удаления карточки
+    placeBtnDel.addEventListener('click', () => placeItems.remove())
+    // слушатель клика по сердечку, вызываем функцию лайк
+    placeBtnLike.addEventListener('click', () => placeBtnLike.classList.add('button-like-active'))
+    // добавляем слушателя клика по изображению, присваиваем значения, вызываем функцию открытия модального окна
+    placeImg.addEventListener('click', function () {
+        fullImage.src = placeImg.src;
+        fullImage.alt = item.elementName;
+        imgTitle.textContent = item.elementName;
+        togglePopup(viewImg);
+    });
 });
 
-// объявляем функцию добавления изображения с помощью createElement
+//Не совсем понял ваш комментарий (ниже)
+/*
+для создания новой карточки нужно сделать отдельную функцию createCard , 
+чтобы не дублировать код: - она будет возвращать готовую карточку, а вставлять в DOM там не нужно
+это нужно для того, чтобы можно было разделить логику вставки. 
+Можно же вставлять карточку в начало, в конец, вообще не вставлять, а сделать массив готовых карточек, 
+а потом уже вставить всем скопом в DOM.
+*/
+
+// логически я бы делал так:
+// 1. Есть массив initialElement
+// 2. Принимаем значения введеные пользователем в форме добавления карточки
+// 3. Присваиваем введенные значениям к elementName: и elementlink:
+// 4. Добавляем в массив через push.
+
+// initialElement.push(elementName, elementLink); - но это не правильно.
+// elementName = inputPlaceName.value;
+// elementLink = inputPlaceUrl.value
+
+// Поэтому сделал так: 
+// я так понимаю это тоже считается дублированием кода?
+
+// объявляем функцию добавления изображения
 function addPlace(event) {
-    const placeContainer = document.createElement('li');
-    placeContainer.classList.add('element');
-
-    const placeImg = document.createElement('img');
-    placeImg.classList.add('element__image');
-
-    placeImg.src = inputPlaceUrl.value;
-    placeImg.alt = inputPlaceName.value;
-
-    const placeBox = document.createElement('div');
-    placeBox.classList.add('element__box');
-
-    const placeTitle = document.createElement('h2');
-    placeTitle.classList.add('element__title');
-
-    placeTitle.textContent = inputPlaceName.value;
-
-    const placeBtnLike = document.createElement('button');
-    placeBtnLike.classList.add('element__button-like');
-
-    const placeBtnDel = document.createElement('button');
-    placeBtnDel.classList.add('element__button-trash');
-
-    // добавляем элементы в html
-    placeContainer.append(placeImg, placeBox, placeBtnDel);
-    placeBox.append(placeTitle, placeBtnLike);
-    place.prepend(placeContainer);
+    const elementItem = elementTemplate.cloneNode(true);
+    const placeBtnDel = elementItem.querySelector('.element__button-trash');
+    const placeBtnLike = elementItem.querySelector('.element__button-like');
+    const placeImg = elementItem.querySelector('.element__image');
+    const placeContainer = elementItem.querySelector('.element');
+    elementItem.querySelector('.element__title').textContent = inputPlaceName.value;
+    elementItem.querySelector('.element__image').alt = inputPlaceName.value;
+    elementItem.querySelector('.element__image').src = inputPlaceUrl.value;
+    elementsList.prepend(elementItem);
 
     event.preventDefault();
     // закрываем форму добавления нового места вызовом функции
     togglePopup(popupAddImg);
-
+    
     // добавляем слушателя по клику корзины, удаляем карточку с изображением
     placeBtnDel.addEventListener('click', () => placeContainer.remove())
     //  добавляем слушателя по клику сердечка, добавляем класс (ставим лайк)
