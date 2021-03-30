@@ -23,7 +23,7 @@ const inputProfileStatus = document.querySelector('#input-profile-status');
 // находим элемент список (ul elements) и присваем переменную
 const elementsList = document.querySelector('.elements');
 // получаем содержимое template элемента element-tamplate обращаясь к его свойству .content
-const elementTemplate = document.querySelector('.element-template').content.querySelector('.element');
+const elementTemplate = document.querySelector('.element-template').content;
 
 const imgTitle = document.querySelector('.popup__img-title');
 const inputPlaceName = document.querySelector('#input-place-name');
@@ -119,23 +119,35 @@ function createPlace(item) {
         imgTitle.textContent = item.elementName;
         togglePopup(viewImg);
     });
-    return elementItem;
+    return elementItem
 };
 
-initialElement.forEach(function (item) {
+initialElement.forEach((item) => {
     const InsertPlace = createPlace(item);
     elementsList.prepend(InsertPlace);
 });
-// console.dir(Event.Target)
+
+function addPlace(e) {
+    e.preventDefault();
+    const newCardValue = {
+        elementName: inputPlaceName.value,
+        elementLink: inputPlaceUrl.value,
+    }
+    const elementItem = createPlace(newCardValue)
+    elementsList.prepend(elementItem);
+    togglePopup(popupAddImg);
+}
+
+// console.dir(event.target)
 
 // добавляем слушатель отправки формы (сабмит) и вызываем функцию добавления нового места
-// submitPlaceBtn.addEventListener('submit', addPlace);
+submitPlaceBtn.addEventListener('submit', addPlace);
 
 
 // добавляем слушатель отправки формы (сабмит) и вызываем функцию изменений значений
 formSubmit.addEventListener('submit', editProfile);
 // добавляем слушатель клика на кнопку Редактировать Профиль, вызываем функцию открытия модального окна
-editProfileBtn.addEventListener('click', function() {
+editProfileBtn.addEventListener('click', function () {
     inputProfileName.value = profileName.textContent;
     inputProfileStatus.value = profileStatus.textContent;
     togglePopup(popupEditProfile)
@@ -147,7 +159,7 @@ addImgBtn.addEventListener('click', () => togglePopup(popupAddImg));
 // добавляем слушатель клика на кнопку закрыть попап Добавить Место, вызываем функцию закрытия модального окна
 closeFormAddPlace.addEventListener('click', () => togglePopup(popupAddImg));
 // добавляем слушатель клика на крестик закрыть попап, вызываем функцию закрытия модального окна с изображением. 
-closeViewImg.addEventListener('click',() => togglePopup(viewImg));
+closeViewImg.addEventListener('click', () => togglePopup(viewImg));
 
 
 
@@ -166,7 +178,7 @@ closeViewImg.addEventListener('click',() => togglePopup(viewImg));
 //     event.preventDefault();
 //     // закрываем форму добавления нового места вызовом функции
 //     togglePopup(popupAddImg);
-    
+
 //     // добавляем слушателя по клику корзины, удаляем карточку с изображением
 //     placeBtnDel.addEventListener('click', () => placeContainer.remove())
 //     //  добавляем слушателя по клику сердечка, добавляем класс (ставим лайк)
