@@ -23,7 +23,8 @@ const inputProfileStatus = document.querySelector('#input-profile-status');
 // находим элемент список (ul elements) и присваем переменную
 const elementsList = document.querySelector('.elements');
 // получаем содержимое template элемента element-tamplate обращаясь к его свойству .content
-const elementTemplate = document.querySelector('.element-template').content;
+const elementTemplate = document.querySelector('.element-template').content.querySelector('.element');
+
 const imgTitle = document.querySelector('.popup__img-title');
 const inputPlaceName = document.querySelector('#input-place-name');
 const inputPlaceUrl = document.querySelector('#input-place-url');
@@ -98,7 +99,7 @@ const initialElement = [
 ];
 
 
-function createPlace(str) {
+function createPlace(item) {
     const elementItem = elementTemplate.cloneNode(true);
     const placeItems = elementItem.querySelector('.element');
     const placeBtnDel = elementItem.querySelector('.element__button-trash');
@@ -106,30 +107,28 @@ function createPlace(str) {
     const placeImg = elementItem.querySelector('.element__image');
     const placeTitle = elementItem.querySelector('.element__title');
 
-    placeTitle.textContent = str.elementName;
-    placeImg.alt = str.elementName;
-    placeImg.src = str.elementLink;
-    elementsList.prepend(elementItem);
+    placeTitle.textContent = item.elementName;
+    placeImg.alt = item.elementName;
+    placeImg.src = item.elementLink;
 
     placeBtnDel.addEventListener('click', () => placeItems.remove())
     placeBtnLike.addEventListener('click', () => placeBtnLike.classList.toggle('button-like-active'))
     placeImg.addEventListener('click', function () {
         fullImage.src = placeImg.src;
-        fullImage.alt = str.elementName;
-        imgTitle.textContent = str.elementName;
+        fullImage.alt = item.elementName;
+        imgTitle.textContent = item.elementName;
         togglePopup(viewImg);
     });
+    return elementItem;
 };
 
-initialElement.forEach(function (i) {
-    createPlace(i)
+initialElement.forEach(function (item) {
+    const InsertPlace = createPlace(item);
+    elementsList.prepend(InsertPlace);
 });
+// console.dir(Event.Target)
 
-
-
-
-
-// добавляем слушатель отправки формы (сабмит) и вызываем функцию добавления новго места
+// добавляем слушатель отправки формы (сабмит) и вызываем функцию добавления нового места
 // submitPlaceBtn.addEventListener('submit', addPlace);
 
 
