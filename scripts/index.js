@@ -97,89 +97,42 @@ const initialElement = [
     },
 ];
 
-// вызываем метод forEach массива initialElement
-initialElement.forEach(function (item) {
-    // клонируем element-template и записываем в переменную 
+
+function createPlace(str) {
     const elementItem = elementTemplate.cloneNode(true);
-    // находим элементы в клоне темплейта присваиваем переменные
     const placeItems = elementItem.querySelector('.element');
     const placeBtnDel = elementItem.querySelector('.element__button-trash');
     const placeBtnLike = elementItem.querySelector('.element__button-like');
     const placeImg = elementItem.querySelector('.element__image');
+    const placeTitle = elementItem.querySelector('.element__title');
 
-    elementItem.querySelector('.element__title').textContent = item.elementName;
-    elementItem.querySelector('.element__image').alt = item.elementName;
-    elementItem.querySelector('.element__image').src = item.elementLink;
+    placeTitle.textContent = str.elementName;
+    placeImg.alt = str.elementName;
+    placeImg.src = str.elementLink;
     elementsList.prepend(elementItem);
 
-    // добавляем слушатель клика по кнопке Удаление карточки, вызываем функцию удаления карточки
     placeBtnDel.addEventListener('click', () => placeItems.remove())
-    // слушатель клика по сердечку, вызываем функцию лайк
-    placeBtnLike.addEventListener('click', () => placeBtnLike.classList.add('button-like-active'))
-    // добавляем слушателя клика по изображению, присваиваем значения, вызываем функцию открытия модального окна
+    placeBtnLike.addEventListener('click', () => placeBtnLike.classList.toggle('button-like-active'))
     placeImg.addEventListener('click', function () {
         fullImage.src = placeImg.src;
-        fullImage.alt = item.elementName;
-        imgTitle.textContent = item.elementName;
+        fullImage.alt = str.elementName;
+        imgTitle.textContent = str.elementName;
         togglePopup(viewImg);
     });
+};
+
+initialElement.forEach(function (i) {
+    createPlace(i)
 });
 
-//Не совсем понял ваш комментарий (ниже)
-/*
-для создания новой карточки нужно сделать отдельную функцию createCard , 
-чтобы не дублировать код: - она будет возвращать готовую карточку, а вставлять в DOM там не нужно
-это нужно для того, чтобы можно было разделить логику вставки. 
-Можно же вставлять карточку в начало, в конец, вообще не вставлять, а сделать массив готовых карточек, 
-а потом уже вставить всем скопом в DOM.
-*/
 
-// логически я бы делал так:
-// 1. Есть массив initialElement
-// 2. Принимаем значения введеные пользователем в форме добавления карточки
-// 3. Присваиваем введенные значениям к elementName: и elementlink:
-// 4. Добавляем в массив через push.
 
-// initialElement.push(elementName, elementLink); - но это не правильно.
-// elementName = inputPlaceName.value;
-// elementLink = inputPlaceUrl.value
 
-// Поэтому сделал так: 
-// я так понимаю это тоже считается дублированием кода?
-
-// объявляем функцию добавления изображения
-function addPlace(event) {
-    const elementItem = elementTemplate.cloneNode(true);
-    const placeBtnDel = elementItem.querySelector('.element__button-trash');
-    const placeBtnLike = elementItem.querySelector('.element__button-like');
-    const placeImg = elementItem.querySelector('.element__image');
-    const placeContainer = elementItem.querySelector('.element');
-    elementItem.querySelector('.element__title').textContent = inputPlaceName.value;
-    elementItem.querySelector('.element__image').alt = inputPlaceName.value;
-    elementItem.querySelector('.element__image').src = inputPlaceUrl.value;
-    elementsList.prepend(elementItem);
-
-    event.preventDefault();
-    // закрываем форму добавления нового места вызовом функции
-    togglePopup(popupAddImg);
-    
-    // добавляем слушателя по клику корзины, удаляем карточку с изображением
-    placeBtnDel.addEventListener('click', () => placeContainer.remove())
-    //  добавляем слушателя по клику сердечка, добавляем класс (ставим лайк)
-    placeBtnLike.addEventListener('click', () => placeBtnLike.classList.add('button-like-active'))
-    // добавляем слушателя клика по изображению, присваиваем значения, вызываем функцию открытия модального окна
-    placeImg.addEventListener('click', function(){
-        // присваиваем значения
-        fullImage.src = placeImg.src;
-        fullImage.alt = inputPlaceName.value;
-        imgTitle.textContent = inputPlaceName.value;
-        // открываем изображение
-        togglePopup(viewImg);
-    });
-}
 
 // добавляем слушатель отправки формы (сабмит) и вызываем функцию добавления новго места
-submitPlaceBtn.addEventListener('submit', addPlace);
+// submitPlaceBtn.addEventListener('submit', addPlace);
+
+
 // добавляем слушатель отправки формы (сабмит) и вызываем функцию изменений значений
 formSubmit.addEventListener('submit', editProfile);
 // добавляем слушатель клика на кнопку Редактировать Профиль, вызываем функцию открытия модального окна
@@ -196,3 +149,37 @@ addImgBtn.addEventListener('click', () => togglePopup(popupAddImg));
 closeFormAddPlace.addEventListener('click', () => togglePopup(popupAddImg));
 // добавляем слушатель клика на крестик закрыть попап, вызываем функцию закрытия модального окна с изображением. 
 closeViewImg.addEventListener('click',() => togglePopup(viewImg));
+
+
+
+// объявляем функцию добавления изображения
+// function addPlace(event) {
+//     const elementItem = elementTemplate.cloneNode(true);
+//     const placeBtnDel = elementItem.querySelector('.element__button-trash');
+//     const placeBtnLike = elementItem.querySelector('.element__button-like');
+//     const placeImg = elementItem.querySelector('.element__image');
+//     const placeContainer = elementItem.querySelector('.element');
+//     elementItem.querySelector('.element__title').textContent = inputPlaceName.value;
+//     elementItem.querySelector('.element__image').alt = inputPlaceName.value;
+//     elementItem.querySelector('.element__image').src = inputPlaceUrl.value;
+//     elementsList.prepend(elementItem);
+
+//     event.preventDefault();
+//     // закрываем форму добавления нового места вызовом функции
+//     togglePopup(popupAddImg);
+    
+//     // добавляем слушателя по клику корзины, удаляем карточку с изображением
+//     placeBtnDel.addEventListener('click', () => placeContainer.remove())
+//     //  добавляем слушателя по клику сердечка, добавляем класс (ставим лайк)
+//     placeBtnLike.addEventListener('click', () => placeBtnLike.classList.add('button-like-active'))
+//     // добавляем слушателя клика по изображению, присваиваем значения, вызываем функцию открытия модального окна
+//     placeImg.addEventListener('click', function(){
+//         // присваиваем значения
+//         fullImage.src = placeImg.src;
+//         fullImage.alt = inputPlaceName.value;
+//         imgTitle.textContent = inputPlaceName.value;
+//         // открываем изображение
+//         togglePopup(viewImg);
+//     });
+// }
+
