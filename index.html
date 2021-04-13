@@ -62,7 +62,7 @@
                 <fieldset class="popup__fieldset">
                     <h2 class="popup__title">Редактировать профиль</h2>
                     <input class="popup__input" type="text" name="input-profile-name" placeholder="Ваше имя"
-                        id="input-profile-name" required minlength="2" maxlength="40">
+                        id="input-profile-name" required minlength="2" maxlength="40" id="input-underline">
                     <span class="popup__input-error" id="input-profile-name-error"></span>
                     <input class="popup__input" type="text" name="input-profile-status"
                         placeholder="Ваш род деятельности" id="input-profile-status" required minlength="2"
@@ -82,8 +82,10 @@
                     <h2 class="popup__title">Новое место</h2>
                     <input class="popup__input" required type="text" name="input-place-name" placeholder="Название"
                         id="input-place-name" required minlength="2" maxlength="30">
+                        <span class="popup__input-error" id="input-place-name-error"></span>
                     <input class="popup__input" required type="url" name="input-place-url"
                         placeholder="Ссылка на картинку" id="input-place-url">
+                        <span class="popup__input-error" id="input-place-url-error"></span>
                     <button class="popup__submit" type="submit">Создать</button>
                 </fieldset>
             </form>
