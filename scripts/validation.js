@@ -1,6 +1,6 @@
 const showInputError = (formElement, inputElement, errorMessage) => {
     const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
-    const errorUnderline = formElement.querySelector('.popup__input');
+    const errorUnderline = inputElement.querySelector('.popup__input');
     errorUnderline.classList.add("popup__input-error-underline");
     errorElement.textContent = errorMessage;
     errorElement.classList.add("popup__input-error_active");
@@ -8,7 +8,7 @@ const showInputError = (formElement, inputElement, errorMessage) => {
 
 const hideInputError = (formElement, inputElement) => {
     const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
-    const errorUnderline = formElement.querySelector('.popup__input');
+    const errorUnderline = inputElement.querySelector('.popup__input');
     errorElement.textContent = '';
     errorElement.classList.remove("popup__input-error_active");
     errorUnderline.classList.remove("popup__input-error-underline");
