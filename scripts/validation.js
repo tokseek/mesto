@@ -1,17 +1,15 @@
 const showInputError = (formElement, inputElement, errorMessage) => {
     const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
-    const errorUnderline = inputElement.querySelector('.popup__input');
-    errorUnderline.classList.add("popup__input-error-underline");
+    inputElement.classList.add("popup__input-error-underline");
     errorElement.textContent = errorMessage;
     errorElement.classList.add("popup__input-error_active");
 };
 
 const hideInputError = (formElement, inputElement) => {
     const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
-    const errorUnderline = inputElement.querySelector('.popup__input');
     errorElement.textContent = '';
     errorElement.classList.remove("popup__input-error_active");
-    errorUnderline.classList.remove("popup__input-error-underline");
+    inputElement.classList.remove("popup__input-error-underline");
 };
 
 const checkInputValidity = (formElement, inputElement) => {
@@ -54,7 +52,8 @@ inputList.forEach(inputElement => {
     });
 });
 // сделаем чтобы кнопка была неактивна сразу при инициализации
-    toggleButtonState(inputList, buttonElement);   
+    toggleButtonState(inputList, buttonElement);
+     
 };
 
 const enableValidation = () => {
@@ -66,6 +65,7 @@ const enableValidation = () => {
 };
 
 enableValidation();
+
 
 
 // enableValidation({
