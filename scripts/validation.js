@@ -37,11 +37,6 @@ const toggleButtonState = (inputList, buttonElement) => {
     }
 }
 
-const closeP = () => {
-    document.addEventListener('click', () => {
-    });
-}
-closeP()
 
 const setEventListeners = (formElement) => {
     formElement.addEventListener('submit', event => {
@@ -71,10 +66,11 @@ const enableValidation = () => {
 function closeWithEsc() {
     const closePopup = document.querySelector('.popup_opened')
     closePopup.classList.remove("popup_opened")
+
 };
 
 
-// слушатель кнопки Escape, закрытие модальног окна
+// слушатель кнопки Escape, закрытие модального окна
 document.addEventListener('keydown', (evt) => {
     if (evt.key === 'Escape') {
         closeWithEsc()
@@ -82,12 +78,13 @@ document.addEventListener('keydown', (evt) => {
     };
 });
 
-
-
-
 enableValidation();
 
-
+// const pP = document.querySelector('.popup_opened')
+// pP.addEventListener('click', function(e){
+//     e.stopPropagation()
+//     console.log('Click!')
+// });
 
 // enableValidation({
 //     formSelector: '.popup__form',
