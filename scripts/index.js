@@ -1,5 +1,5 @@
 // находим элементы в DOM, назначаем переменные
-
+const pop = document.querySelector('.popup')
 //переменные модальных окон
 const popupEditProfile = document.querySelector('.popup-edit-profile');
 const popupAddImg = document.querySelector('.popup-add-img');
@@ -30,23 +30,14 @@ const inputPlaceName = document.querySelector('#input-place-name');
 const inputPlaceUrl = document.querySelector('#input-place-url');
 const submitPlaceBtn = document.querySelector('.popup-form-place');
 
-
-const pop = document.querySelector('.popup')
-
 // объявляем функцию открытия модального окна
 function togglePopup(pop) {
     // к элементу popup добавляем атрибут popup_opened  
     pop.classList.toggle('popup_opened');
 }
 
-document.addEventListener('keydown', (evt) => {
-        if (evt.key === 'Escape') {
-            pop.classList.remove('popup_opened'); // Редактирование профиля
-            popupAddImg.classList.remove('popup_opened'); // Добавление места
-            viewImg.classList.remove('popup_opened'); // Просмотр изображения
-            console.log('ESC!')
-    };
-});
+
+
 
 
 // объявляем функцию изменения значений в профиле 

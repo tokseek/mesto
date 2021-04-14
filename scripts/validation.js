@@ -21,7 +21,7 @@ const checkInputValidity = (formElement, inputElement) => {
     } else {
         hideInputError(formElement, inputElement)
     }
-} 
+}
 
 const toggleButtonState = (inputList, buttonElement) => {
     const hasNotValidInput = inputList.some(
@@ -37,6 +37,12 @@ const toggleButtonState = (inputList, buttonElement) => {
     }
 }
 
+const closeP = () => {
+    document.addEventListener('click', () => {
+    });
+}
+closeP()
+
 const setEventListeners = (formElement) => {
     formElement.addEventListener('submit', event => {
         event.preventDefault();
@@ -45,24 +51,39 @@ const setEventListeners = (formElement) => {
     const inputList = Array.from(formElement.querySelectorAll(".popup__input"));
     const buttonElement = formElement.querySelector(".popup__submit");
 
-inputList.forEach(inputElement => {
-    inputElement.addEventListener("input", (event) => {
-        checkInputValidity(formElement, inputElement);
-        toggleButtonState(inputList, buttonElement);
+    inputList.forEach(inputElement => {
+        inputElement.addEventListener("input", (event) => {
+            checkInputValidity(formElement, inputElement);
+            toggleButtonState(inputList, buttonElement);
+        });
     });
-});
-// сделаем чтобы кнопка была неактивна сразу при инициализации
+    // сделаем чтобы кнопка была неактивна сразу при инициализации
     toggleButtonState(inputList, buttonElement);
-     
 };
 
 const enableValidation = () => {
     const formList = Array.from(document.querySelectorAll('.popup__form'))
-
     formList.forEach(setEventListeners);
-
     console.log(formList)
 };
+
+// создаем функцию закрытия модального окна
+function closeWithEsc() {
+    const closePopup = document.querySelector('.popup_opened')
+    closePopup.classList.remove("popup_opened")
+};
+
+
+// слушатель кнопки Escape, закрытие модальног окна
+document.addEventListener('keydown', (evt) => {
+    if (evt.key === 'Escape') {
+        closeWithEsc()
+        console.log('ESC!')
+    };
+});
+
+
+
 
 enableValidation();
 
