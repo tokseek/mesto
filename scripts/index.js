@@ -31,13 +31,25 @@ const inputPlaceUrl = document.querySelector('#input-place-url');
 const submitPlaceBtn = document.querySelector('.popup-form-place');
 
 // объявляем функцию открытия модального окна
-function togglePopup(pop) {
-    // к элементу popup добавляем атрибут popup_opened  
-    pop.classList.toggle('popup_opened');
-}
+// к элементу popup добавляем атрибут popup_opened  
+const togglePopup = (pop) => { pop.classList.toggle('popup_opened') };
 
+// объявляем функцию закрытия модального окна по клику вне области контента
+const overlayHandler = (e) => {
+    if (!e.target.closest('.popup__content')) {
+        const closeModalWithClick = document.querySelector('.popup_opened')
+        togglePopup(closeModalWithClick)
+        console.log('Click')
+    }
+};
 
-
+// слушатель кнопки Escape, закрытие модального окна
+document.addEventListener('keydown', (evt) => {
+    if (evt.key === 'Escape') {
+        const closePopup = document.querySelector('.popup_opened')
+        togglePopup(closePopup)
+    };
+});
 
 
 // объявляем функцию изменения значений в профиле 
@@ -102,7 +114,6 @@ const initialElement = [
     },
 ];
 
-
 function createPlace(item) {
     const elementItem = elementTemplate.cloneNode(true);
     const placeItems = elementItem.querySelector('.element');
@@ -147,54 +158,29 @@ function addPlace(e) {
 // добавляем слушатель отправки формы (сабмит) и вызываем функцию добавления нового места
 submitPlaceBtn.addEventListener('submit', addPlace);
 
-
 // добавляем слушатель отправки формы (сабмит) и вызываем функцию изменений значений
 formSubmit.addEventListener('submit', editProfile);
+
 // добавляем слушатель клика на кнопку Редактировать Профиль, вызываем функцию открытия модального окна
 editProfileBtn.addEventListener('click', function () {
     inputProfileName.value = profileName.textContent;
     inputProfileStatus.value = profileStatus.textContent;
     togglePopup(popupEditProfile)
 });
+
 // добавляем слушатель клика на кнопку закрыть попап Редактировать Профиль, вызываем функцию закрытия модального окна
 closePopupBtn.addEventListener('click', () => togglePopup(popupEditProfile));
+
 // добавляем слушатель клика на кнопку Добавить Место, вызываем функцию открытия модального окна
 addImgBtn.addEventListener('click', () => togglePopup(popupAddImg));
+
 // добавляем слушатель клика на кнопку закрыть попап Добавить Место, вызываем функцию закрытия модального окна
 closeFormAddPlace.addEventListener('click', () => togglePopup(popupAddImg));
+
 // добавляем слушатель клика на крестик закрыть попап, вызываем функцию закрытия модального окна с изображением. 
 closeViewImg.addEventListener('click', () => togglePopup(viewImg));
 
-
-
-// объявляем функцию добавления изображения
-// function addPlace(event) {
-//     const elementItem = elementTemplate.cloneNode(true);
-//     const placeBtnDel = elementItem.querySelector('.element__button-trash');
-//     const placeBtnLike = elementItem.querySelector('.element__button-like');
-//     const placeImg = elementItem.querySelector('.element__image');
-//     const placeContainer = elementItem.querySelector('.element');
-//     elementItem.querySelector('.element__title').textContent = inputPlaceName.value;
-//     elementItem.querySelector('.element__image').alt = inputPlaceName.value;
-//     elementItem.querySelector('.element__image').src = inputPlaceUrl.value;
-//     elementsList.prepend(elementItem);
-
-//     event.preventDefault();
-//     // закрываем форму добавления нового места вызовом функции
-//     togglePopup(popupAddImg);
-
-//     // добавляем слушателя по клику корзины, удаляем карточку с изображением
-//     placeBtnDel.addEventListener('click', () => placeContainer.remove())
-//     //  добавляем слушателя по клику сердечка, добавляем класс (ставим лайк)
-//     placeBtnLike.addEventListener('click', () => placeBtnLike.classList.add('button-like-active'))
-//     // добавляем слушателя клика по изображению, присваиваем значения, вызываем функцию открытия модального окна
-//     placeImg.addEventListener('click', function(){
-//         // присваиваем значения
-//         fullImage.src = placeImg.src;
-//         fullImage.alt = inputPlaceName.value;
-//         imgTitle.textContent = inputPlaceName.value;
-//         // открываем изображение
-//         togglePopup(viewImg);
-//     });
-// }
-
+// добавляем слушатели на модальные окна
+pop.addEventListener('click', overlayHandler)
+popupAddImg.addEventListener('click', overlayHandler)
+viewImg.addEventListener('click', overlayHandler)
