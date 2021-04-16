@@ -1,5 +1,5 @@
 // находим элементы в DOM, назначаем переменные
-const pop = document.querySelector('.popup')
+// const masterModalWindow = document.querySelector('.popup')
 //переменные модальных окон
 const popupEditProfile = document.querySelector('.popup-edit-profile');
 const popupAddImg = document.querySelector('.popup-add-img');
@@ -8,13 +8,13 @@ const viewImg = document.querySelector('.popup-view-img');
 const editProfileBtn = document.querySelector('.profile__edit-button');
 const addImgBtn = document.querySelector('.profile__add-button');
 //элементы закрытия модальных окон
-const closePopupBtn = popupEditProfile.querySelector('.popup__btn-close');
+const closeEditProfile = popupEditProfile.querySelector('.popup__btn-close');
 const closeFormAddPlace = popupAddImg.querySelector('.popup__btn-close');
 const closeViewImg = viewImg.querySelector('.popup__btn-close');
 //элементы профиля
 const profileName = document.querySelector('.profile__name');
 const profileStatus = document.querySelector('.profile__status');
-const formSubmit = document.querySelector('.popup__form');
+const profileForm = document.querySelector('.popup-form-profile');
 const fullImage = document.querySelector('.popup__img');
 /* получаем по идентификатору(id) поле ввода Имени и сохраняем в переменной inputName */
 const inputProfileName = document.querySelector('#input-profile-name');
@@ -28,11 +28,11 @@ const elementTemplate = document.querySelector('.element-template').content;
 const imgTitle = document.querySelector('.popup__img-title');
 const inputPlaceName = document.querySelector('#input-place-name');
 const inputPlaceUrl = document.querySelector('#input-place-url');
-const submitPlaceBtn = document.querySelector('.popup-form-place');
+const placeForm = document.querySelector('.popup-form-place');
 
 // объявляем функцию открытия модального окна
 // к элементу popup добавляем атрибут popup_opened  
-const togglePopup = (pop) => { pop.classList.toggle('popup_opened') };
+const togglePopup = (openModalWindow) => {openModalWindow.classList.toggle('popup_opened') };
 
 // объявляем функцию закрытия модального окна по клику вне области контента
 const overlayHandler = (e) => {
@@ -62,57 +62,7 @@ function editProfile(event) {
     togglePopup(popupEditProfile)
 }
 
-// объявляем переменную массиву с фотографиям
-const initialElement = [
-    {
-        elementName: 'Мельница',
-        elementLink: 'https://images.unsplash.com/photo-1590523328639-1ebe5a06a0d4',
-    },
-    {
-        elementName: 'Семафор',
-        elementLink: 'https://images.unsplash.com/photo-1602570002144-76437cc6ce85',
-    },
-    {
-        elementName: 'Экстерьер',
-        elementLink: 'https://images.unsplash.com/photo-1591462906387-f0f9eb3d82d0',
-    },
-    {
-        elementName: 'Причал',
-        elementLink: 'https://images.unsplash.com/photo-1590611698651-2f2fb9c6a44b',
-    },
-    {
-        elementName: 'Уют',
-        elementLink: 'https://cdn.pixabay.com/photo/2021/01/05/03/35/image-5889561_960_720.jpg',
-    },
-    {
-        elementName: 'Параплан',
-        elementLink: 'https://images.unsplash.com/photo-1597104831784-1fce445bcdda',
-    },
-    {
-        elementName: 'Заброшенный ретро автомобиль',
-        elementLink: './images/bruno-neurath-wilson-K6KIz8ydsi8-unsplash.jpg',
-    },
-    {
-        elementName: 'Diana F+',
-        elementLink: './images/bambi-corro-GLZ0b6ZmYek-unsplash.jpg',
-    },
-    {
-        elementName: 'Случайное фото',
-        elementLink: 'https://source.unsplash.com/collection/35mm-film',
-    },
-    {
-        elementName: 'Фотоаппарат Polaroid',
-        elementLink: './images/camila-quintero-franco-Yg1JBNAUC48-unsplash.jpg',
-    },
-    {
-        elementName: 'Колесо обозрения',
-        elementLink: './images/linda-holman-6jTlmUWGweE-unsplash.jpg',
-    },
-    {
-        elementName: 'Фотоплёнка',
-        elementLink: './images/markus-winkler-CiA0uLEKeUI-unsplash.jpg',
-    },
-];
+
 
 function createPlace(item) {
     const elementItem = elementTemplate.cloneNode(true);
@@ -137,12 +87,11 @@ function createPlace(item) {
     return elementItem
 };
 
-initialElement.forEach((item) => {
-    const InsertPlace = createPlace(item);
-    elementsList.prepend(InsertPlace);
-});
+
 
 function addPlace(e) {
+    inputPlaceName.value = '';
+    inputPlaceUrl.value = '';
     e.preventDefault();
     const newCardValue = {
         elementName: inputPlaceName.value,
@@ -150,16 +99,17 @@ function addPlace(e) {
     }
     const elementItem = createPlace(newCardValue)
     elementsList.prepend(elementItem);
+
     togglePopup(popupAddImg);
 }
 
 // console.dir(event.target)
 
 // добавляем слушатель отправки формы (сабмит) и вызываем функцию добавления нового места
-submitPlaceBtn.addEventListener('submit', addPlace);
+placeForm.addEventListener('submit', addPlace);
 
 // добавляем слушатель отправки формы (сабмит) и вызываем функцию изменений значений
-formSubmit.addEventListener('submit', editProfile);
+profileForm.addEventListener('submit', editProfile);
 
 // добавляем слушатель клика на кнопку Редактировать Профиль, вызываем функцию открытия модального окна
 editProfileBtn.addEventListener('click', function () {
@@ -169,7 +119,7 @@ editProfileBtn.addEventListener('click', function () {
 });
 
 // добавляем слушатель клика на кнопку закрыть попап Редактировать Профиль, вызываем функцию закрытия модального окна
-closePopupBtn.addEventListener('click', () => togglePopup(popupEditProfile));
+closeEditProfile.addEventListener('click', () => togglePopup(popupEditProfile));
 
 // добавляем слушатель клика на кнопку Добавить Место, вызываем функцию открытия модального окна
 addImgBtn.addEventListener('click', () => togglePopup(popupAddImg));
@@ -181,6 +131,6 @@ closeFormAddPlace.addEventListener('click', () => togglePopup(popupAddImg));
 closeViewImg.addEventListener('click', () => togglePopup(viewImg));
 
 // добавляем слушатели на модальные окна
-pop.addEventListener('click', overlayHandler)
+popupEditProfile.addEventListener('click', overlayHandler)
 popupAddImg.addEventListener('click', overlayHandler)
 viewImg.addEventListener('click', overlayHandler)
