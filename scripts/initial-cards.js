@@ -49,20 +49,7 @@ const initialElement = [
         elementLink: './images/markus-winkler-CiA0uLEKeUI-unsplash.jpg',
     },
 ];
-
-
-
-initialElement.forEach((item) => {
-    const InsertPlace = createPlace(item);
-    elementsList.prepend(InsertPlace);
-});
-
-// если перебор и добавление карточки оставлять в index то карточки не добавляются.. ошибка
-// index.js:90 Uncaught ReferenceError: initialElement is not defined
-// at index.js:90
-
-// получается что массив не видно из indexa
-
+// спасибо) все получилось!)
 
 
 

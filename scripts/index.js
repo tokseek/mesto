@@ -66,6 +66,10 @@ function closeWithEsc(evt) {
 };
 
 
+initialElement.forEach((item) => {
+    const InsertPlace = createPlace(item);
+    elementsList.prepend(InsertPlace);
+});
 
 // объявляем функцию изменения значений в профиле 
 function editProfile(event) {
