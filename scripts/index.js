@@ -29,6 +29,7 @@ const imgTitle = document.querySelector('.popup__img-title');
 const inputPlaceName = document.querySelector('#input-place-name');
 const inputPlaceUrl = document.querySelector('#input-place-url');
 const placeForm = document.querySelector('.popup-form-place');
+const btnDisable = popupAddImg.querySelector('.popup__submit')
 
 
 
@@ -53,7 +54,6 @@ const overlayHandler = (e) => {
     if (!e.target.closest('.popup__content')) {
         const closeModalWithClick = document.querySelector('.popup_opened')
         closeModalWindow(closeModalWithClick)
-        console.log('Click')
     }
 };
 
@@ -76,10 +76,6 @@ function editProfile(event) {
     closeModalWindow(popupEditProfile)
 }
 
-initialElement.forEach((item) => {
-    const InsertPlace = createPlace(item);
-    elementsList.prepend(InsertPlace);
-});
 
 function createPlace(item) {
     const elementItem = elementTemplate.cloneNode(true);
@@ -103,9 +99,6 @@ function createPlace(item) {
     });
     return elementItem
 };
-
-const btnDisable = popupAddImg.querySelector('.popup__submit')
-console.log(btnDisable)
 
 function addPlace(e) {
     e.preventDefault();
