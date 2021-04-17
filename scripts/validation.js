@@ -1,3 +1,4 @@
+//перпеменная с классами enableValidation
 const config = {
     formSelector: '.popup__form',
     inputSelector: '.popup__input',

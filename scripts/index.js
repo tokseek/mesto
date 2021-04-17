@@ -66,6 +66,7 @@ function closeWithEsc(evt) {
 };
 
 
+
 // объявляем функцию изменения значений в профиле 
 function editProfile(event) {
     event.preventDefault();
