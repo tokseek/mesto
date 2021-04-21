@@ -8,8 +8,6 @@ const config = {
     errorClass: 'popup__input-error_active'
   }; 
 
-const formElement = document.querySelector(config.formSelector);
-
 const showInputError = (formElement, inputElement, errorMessage, config) => {
     const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
     inputElement.classList.add(config.inputErrorClass);
